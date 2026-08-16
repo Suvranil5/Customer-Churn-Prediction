@@ -2,25 +2,26 @@
 
 ## Project Overview
 
-Customer churn is a major business challenge for subscription-based companies. This project analyzes customer demographics, services, contracts, tenure, and billing information to identify factors associated with customer churn and build machine learning models to predict customers at risk of leaving.
+Customer churn is a major challenge for subscription-based businesses. This project analyzes customer behavior and builds machine learning models to identify customers who are likely to churn.
 
-The project combines exploratory data analysis, feature preprocessing, classification models, model evaluation, and business recommendations.
+The project combines exploratory data analysis, feature engineering, machine learning, model evaluation, and business recommendations to support proactive customer-retention decisions.
 
 ## Objectives
 
-- Analyze customer churn patterns.
-- Identify customer characteristics associated with churn.
-- Explore relationships between contracts, services, tenure, and billing and churn.
-- Prepare customer data for machine learning.
-- Build and compare multiple churn prediction models.
-- Identify important churn drivers.
-- Provide actionable customer-retention recommendations.
+- Understand customer characteristics associated with churn
+- Explore patterns in customer demographics, services, contracts, and billing
+- Identify factors associated with higher churn rates
+- Build machine learning models to predict customer churn
+- Compare model performance using multiple evaluation metrics
+- Translate analytical findings into actionable customer-retention strategies
 
 ## Dataset
 
 The project uses a telecommunications customer churn dataset containing customer demographic, service, contract, and billing information.
 
-The dataset contains approximately 7,000 customer records and includes the target variable `Churn Label`.
+The dataset is stored in:
+
+`data/Telco_customer_churn.xlsx`
 
 ## Tools & Technologies
 
@@ -28,69 +29,128 @@ The dataset contains approximately 7,000 customer records and includes the targe
 - Pandas
 - NumPy
 - Matplotlib
+- Seaborn
 - Scikit-learn
 - Jupyter Notebook
-- VS Code
 - Git & GitHub
 
 ## Project Workflow
 
-1. Data loading and inspection
-2. Data quality assessment
+1. Data loading
+2. Data inspection and cleaning
 3. Exploratory data analysis
-4. Churn distribution analysis
-5. Customer segment analysis
-6. Feature and target separation
-7. Train-test split
-8. Feature preprocessing
-9. Logistic Regression
-10. Decision Tree
-11. Random Forest
-12. Model evaluation
-13. Model comparison
-14. Feature importance analysis
-15. Business recommendations
+4. Churn analysis
+5. Feature selection
+6. Train-test split
+7. Feature preprocessing
+8. Machine learning model development
+9. Model evaluation
+10. Model comparison
+11. Business insights
+12. Customer-retention recommendations
 
-## Models Evaluated
+## Exploratory Data Analysis
 
-### Logistic Regression
+The analysis examines churn across several important customer characteristics, including:
 
-Used as the baseline classification model because it provides an interpretable benchmark for binary churn prediction.
+- Contract type
+- Internet service
+- Payment method
+- Senior citizen status
+- Tech support
+- Online security
+- Monthly charges
 
-### Decision Tree
+## Key Findings
 
-Used to capture non-linear relationships and interactions between customer characteristics.
+### Internet Service
 
-### Random Forest
+Fiber optic customers show substantially higher churn than DSL customers.
 
-Used as an ensemble model combining multiple decision trees to improve predictive stability and overall performance.
+### Contract Type
 
-## Model Performance
+Customers on shorter-term contracts are more likely to churn than customers on longer-term contracts.
+
+### Payment Method
+
+Electronic check customers show the highest churn rate among the payment methods analyzed.
+
+### Senior Citizens
+
+Senior citizens have a considerably higher churn rate than non-senior customers.
+
+### Tech Support
+
+Customers without tech support have substantially higher churn than customers who have the service.
+
+### Online Security
+
+Customers without online security show a considerably higher churn rate.
+
+### Monthly Charges
+
+Customers who churn generally have higher monthly charges, indicating that pricing and perceived value may influence retention.
+
+## Machine Learning Models
+
+Three classification models were evaluated:
+
+- Logistic Regression
+- Decision Tree
+- Random Forest
+
+## Model Comparison
 
 | Model | Accuracy | Precision | Recall | F1-Score | ROC-AUC |
 |---|---:|---:|---:|---:|---:|
-| Logistic Regression | 80.20% | 64.35% | 56.95% | 60.43% | 84.89% |
-| Decision Tree | 79.42% | 61.60% | 59.63% | 60.60% | 83.53% |
-| Random Forest | 80.70% | 66.78% | 54.28% | 59.88% | 85.34% |
+| Logistic Regression | 0.802 | 0.644 | 0.570 | 0.604 | 0.849 |
+| Decision Tree | 0.794 | 0.616 | 0.596 | 0.606 | 0.835 |
+| Random Forest | 0.807 | 0.668 | 0.543 | 0.598 | 0.853 |
 
-Random Forest achieved the highest ROC-AUC and accuracy among the three evaluated models, while the Decision Tree achieved the highest recall.
+The models were evaluated using Accuracy, Precision, Recall, F1-Score, and ROC-AUC.
 
-## Key Business Insights
+For churn prediction, Recall, F1-Score, and ROC-AUC are particularly important because failing to identify a customer who is actually going to churn can result in a missed retention opportunity.
 
-- Month-to-month customers show substantially higher churn than customers on longer-term contracts.
-- Fiber-optic customers demonstrate elevated churn compared with other internet-service groups.
-- Customers with higher recurring charges show greater churn risk.
-- Customers without services such as online security and technical support show higher churn rates.
-- Predictive modeling can help prioritize customers for targeted retention campaigns.
+## Confusion Matrix
+
+The Logistic Regression confusion matrix demonstrates the importance of false negatives in churn prediction.
+
+False negatives represent customers who actually churned but were predicted as retained. These customers may be missed by proactive retention campaigns.
+
+## Visualizations
+
+### Customer Churn Distribution
+
+![Customer Churn Distribution](visuals/churn_distribution.png)
+
+### Churn Rate by Contract Type
+
+![Churn Rate by Contract](visuals/churn_by_contract.png)
+
+### Churn Rate by Internet Service
+
+![Churn Rate by Internet Service](visuals/churn_by_internet_service.png)
+
+### Churn Rate by Payment Method
+
+![Churn Rate by Payment Method](visuals/churn_by_payment_method.png)
+
+### Monthly Charges by Churn Status
+
+![Monthly Charges by Churn](visuals/monthly_charges_by_churn.png)
 
 ## Business Recommendations
 
-- Encourage month-to-month customers to move to longer-term contracts through targeted incentives.
-- Investigate pricing and perceived-value concerns among customers with higher monthly charges.
-- Develop targeted retention strategies for high-risk internet-service segments.
-- Consider bundled security and technical-support offerings.
-- Use churn probabilities to prioritize customers for proactive retention campaigns.
-- Consider threshold tuning when maximizing churner identification is more important than overall accuracy.
+Based on the analysis, the following retention strategies could be considered:
+
+- Target high-risk customers with proactive retention campaigns
+- Provide incentives for customers to move toward longer-term contracts
+- Investigate pricing and value perception among high-charge customers
+- Improve support availability for customers without technical support
+- Review the customer experience of fiber optic users
+- Develop targeted retention offers for electronic-check customers
+- Provide additional support and engagement for higher-risk senior customers
+- Promote security and support services as part of customer retention packages
 
 ## Repository Structure
 
@@ -104,5 +164,11 @@ Customer-Churn-Prediction/
 │   └── customer_churn_analysis.ipynb
 │
 ├── visuals/
+│   ├── churn_by_contract.png
+│   ├── churn_by_internet_service.png
+│   ├── churn_by_payment_method.png
+│   ├── churn_distribution.png
+│   └── monthly_charges_by_churn.png
 │
+├── .gitignore
 └── README.md
